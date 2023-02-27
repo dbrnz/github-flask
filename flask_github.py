@@ -201,15 +201,17 @@ class GitHub(object):
         _logger.debug("POSTing to %s", url)
         _logger.debug(params)
         response = self.session.post(url, data=params)
-        data = parse_qs(response.content)
-        _logger.debug("response.content = %s", data)
-        for k, v in data.items():
-            if len(v) == 1:
-                data[k] = v[0]
-        token = data.get(b'access_token', None)
-        if token is not None:
-            token = token.decode('ascii')
-        return token
+        params = parse_qs(response.content)
+        _logger.debug("response.content = %s", params)
+        data = {}
+        for k, v in params.items():
+            if len(v) != 1:
+                continue
+            # DANGER: Assuming that we always receive back ASCII values...
+            key = k.decode('ascii')
+            value = v[0].decode("ascii")
+            data[key] = value
+        return data
 
     def _handle_invalid_response(self):
         pass
