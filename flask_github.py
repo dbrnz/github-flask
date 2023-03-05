@@ -204,6 +204,8 @@ class GitHub(object):
         params = parse_qs(response.content)
         _logger.debug("response.content = %s", params)
         data = {}
+        if 'state' in request.args:
+            data['state'] = request.args['state']
         for k, v in params.items():
             if len(v) != 1:
                 continue
