@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "github-flask"
-version = "0.0.6"
+version = "3.2.1"
 description = ""
 authors = ["Cenk Alti <cenkalti@gmail.com>"]
  
