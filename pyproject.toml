@@ -9,10 +9,9 @@ packages = [{include = "flask_github.py"}]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = ">=3.8,<4.0"
 requests = "^2.28.2"
 Flask = "^2.2.3"
-
 
 [tool.poetry.group.dev.dependencies]
 mock = "^5.0.1"
